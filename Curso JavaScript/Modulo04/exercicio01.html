@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 01</title>
+    </head>
+    <body>
+        <div id="content">
+            <input type="text">
+            <button onclick="checkAgeAndShowResult()">Checar idade</button>
+            <p id="message"></p>
+        </div>
+
+        <script>
+            function checkAge(age) {
+                return new Promise(function (resolve, reject) {
+                    setTimeout(function () {
+                        if (age > 18) resolve("Maior que 18 anos");
+                        else          reject("Não é maior que 18 anos");
+                    }, 2000);
+                });
+            }
+
+            function checkAgeAndShowResult() {
+                const ageElement = document.querySelector("#content input");
+                showMessage("Verificando...");
+                checkAge(ageElement.value)
+                    .then(message => showMessage(message))
+                    .catch(error => showMessage(error, "#F00"));
+            }
+
+            function showMessage(message, color = "#000") {
+                const messageElement = document.querySelector("#message");
+                const textNode = document.createTextNode(message);
+                messageElement.style.color = color;
+                messageElement.innerHTML = '';
+                messageElement.appendChild(textNode);
+            }
+        </script>
+    </body>
+</html>

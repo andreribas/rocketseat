@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 02/03</title>
+    </head>
+    <body>
+        <div id="content">
+            <input type="text" placeholder="Github user">
+            <button onclick="checkRepos()">Checar repositorios</button>
+            <p id="message"></p>
+            <ul id="repos"></ul>
+        </div>
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script>
+            function checkRepos() {
+                showMessage("Carregando...");
+
+                const username = document.querySelector("#content input").value;
+                axios.get(`https://api.github.com/users/${username}/repos`)
+                    .then(response => handleResponse(response))
+                    .catch(error => handleError(error));
+            }
+
+            function handleResponse(response) {
+                const repos = response.data.map(({name}) => name);
+                
+                showMessage("Repositorios encontrados:")
+                showRepos(repos);
+            }
+
+            function showRepos(repos) {
+                const reposElement = document.querySelector("#repos");
+                reposElement.innerHTML = '';
+                repos.forEach(repo => showRepo(reposElement, repo));
+            }
+
+            function showRepo(reposElement, repo_name) {
+                const itemElement = document.createElement('li');
+                const textNode = document.createTextNode(repo_name);
+                itemElement.appendChild(textNode);
+                reposElement.appendChild(itemElement);
+            }
+
+            function handleError(error) {
+                const is404 = error.message == "Request failed with status code 404";
+                const errorMessage = is404 ? "Usuário não encontrado" : "Erro desconhecido" 
+                showMessage(errorMessage, "#F00");
+                showRepos([]);
+            }
+
+            function showMessage(message, color = "#000") {
+                const messageElement = document.querySelector("#message");
+                const textNode = document.createTextNode(message);
+                messageElement.style.color = color;
+                messageElement.innerHTML = '';
+                messageElement.appendChild(textNode);
+            }
+        </script>
+    </body>
+</html>
