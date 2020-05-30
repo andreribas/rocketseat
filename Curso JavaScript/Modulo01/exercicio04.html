@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 04</title>
+    </head>
+    <body>
+        <div id="content"></div>
+
+        <script>
+            function experiencia(anos) {
+                if (anos <= 1) return "Iniciante";
+                else if (anos <= 3) return "Intermediário";
+                else if (anos <= 6) return "Avançado";
+                else return "Jedi Master";
+            }
+
+            const anosEstudo = 7;
+            const nivel = experiencia(anosEstudo);
+
+            const message =  `O dev com ${anosEstudo} anos de estudo é um dev ${nivel}`;
+
+            const contentElement = document.querySelector('#content');
+            const textElement = document.createTextNode(message);
+            contentElement.appendChild(textElement);
+        </script>
+    </body>
+</html>

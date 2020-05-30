@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 05</title>
+    </head>
+    <body>
+        <div id="content">
+            <ul></ul>
+        </div>
+
+        <script>
+            function descreverDev(devs) {
+                let descricoes = [];
+                for (const dev of devs) {
+                    const descricao = `O ${dev.nome} possui as habilidades: ${dev.habilidades.join(', ')}`;
+                    descricoes.push(descricao);
+                }
+                return descricoes;
+            }
+
+            const devs = [
+                {
+                    nome: "Diego",
+                    habilidades: ["Javascript", "ReactJS", "Redux"]
+                },
+                {
+                    nome: "Gabriel",
+                    habilidades: ["VueJS", "Ruby on Rails", "Elixir"]
+                }
+            ];
+
+            const messages =  descreverDev(devs);
+
+            const ulElement = document.querySelector('#content ul');
+            messages.forEach(message => addMessage(message))
+            function addMessage(message) {
+                const liElement = document.createElement('li');
+                const textElement = document.createTextNode(message);
+                liElement.appendChild(textElement);
+                ulElement.appendChild(liElement);
+            }
+        </script>
+    </body>
+</html>

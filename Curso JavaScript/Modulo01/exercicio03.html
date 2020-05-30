@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 03</title>
+    </head>
+    <body>
+        <div id="content"></div>
+
+        <script>
+            function temHabilidade(skills) {
+                return skills.indexOf("Javascript") >= 0;
+            }
+
+            const skills = [
+                "Javascript",
+                "ReactJS",
+                "React Native",
+            ];
+
+            const message = temHabilidade(skills)
+                ? "Usuário tem habilidade Javascript"
+                : "Usuário não tem habilidade Javascript";
+
+            const contentElement = document.querySelector('#content');
+            const textElement = document.createTextNode(message);
+            contentElement.appendChild(textElement);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 02</title>
+    </head>
+    <body>
+        <div id="content"></div>
+
+        <script>
+            function pares(x, y) {
+                let pares = [];
+                for (let i = x; i < y; i++) {
+                    if (i % 2 === 0)
+                        pares.push(i);
+                }
+                return pares;
+            }
+
+            const numeros_pares = pares(32, 64);
+
+            const message = `Os números pares entre 32 e 64 são: ${numeros_pares}`;
+
+            const contentElement = document.querySelector('#content');
+            const textElement = document.createTextNode(message);
+            contentElement.appendChild(textElement);
+        </script>
+    </body>
+</html>
