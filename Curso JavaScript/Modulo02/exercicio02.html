@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 02</title>
+    </head>
+    <body>
+        <div id="content">
+            <p>Mova o cursor do mouse sobre as caixas</p>
+            <div id="boxes" style="display: flex; flex-wrap: wrap"></div>
+        </div>
+
+        <script>
+            fillScreen(60);
+
+            function fillScreen(boxes) {
+                for (let i = 0 ; i < boxes; i++) {
+                    addBox();
+                }
+            }
+
+            function addBox() {
+                const boxesElement = document.querySelector("#content #boxes");
+                const boxElement = document.createElement('div');
+
+                boxesElement.appendChild(boxElement);
+                boxElement.style.width = "100px";
+                boxElement.style.height = "100px";
+                boxElement.style.margin = "10px";
+                boxElement.style.backgroundColor = "#f00";
+                boxElement.onmouseover = function() { changeColor(boxElement); };
+            }
+
+            function changeColor(boxElement) {
+                boxElement.style.backgroundColor = getRandomColor();
+
+            }
+
+            function getRandomColor() {
+                const letters = "0123456789ABCDEF";
+                let color = "#";
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+        </script>
+    </body>
+</html>

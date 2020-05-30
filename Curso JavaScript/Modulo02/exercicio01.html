@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 01</title>
+    </head>
+    <body>
+        <div id="content">
+            <button onclick="addBox()">Adicionar novo quadrado</button>
+            <div id="boxes" style="display: flex; flex-wrap: wrap"></div>
+        </div>
+
+        <script>
+            const boxesElement = document.querySelector("#content #boxes");
+            function addBox() {
+                const boxElement = document.createElement('div');
+
+                boxesElement.appendChild(boxElement);
+                boxElement.style.width = "100px";
+                boxElement.style.height = "100px";
+                boxElement.style.margin = "10px";
+                boxElement.style.backgroundColor = "#f00";
+            }
+        </script>
+    </body>
+</html>

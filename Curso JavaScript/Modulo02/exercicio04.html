@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Exercício 04</title>
+    </head>
+    <body>
+        <div id="content">
+            <ul id="names"></ul>
+            <input type="text" name="name">
+            <button onclick="addName()">Adicionar nome</button>
+        </div>
+
+        <script>
+            let names = [
+                "Diego",
+                "Gabriel",
+                "Lucas",
+            ];
+
+            function addName() {
+                const nameElement = document.querySelector("#content input");
+                names.push(nameElement.value);
+                nameElement.value = '';
+                renderNames();
+            }
+
+            function renderNames() {
+                const namesElement = document.querySelector("#content #names");
+                namesElement.innerHTML = '';
+                names.forEach(name => appendName(namesElement, name));
+            }
+
+            function appendName(namesElement, name) {
+                const nameElement = document.createElement('li');
+                const nameText = document.createTextNode(name);
+                nameElement.appendChild(nameText);
+                namesElement.appendChild(nameElement);
+            }
+
+            renderNames();
+        </script>
+    </body>
+</html>
